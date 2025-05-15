@@ -1,26 +1,4 @@
-# Refactoring: Aufgaben
-
-Erstellen Sie zunächst einen Fork von diesem Repository.
-
-Bei den folgenden Aufgaben soll nach dem folgenden Schema vorgegangen werden:
-
-1. Den Code lesen und das Problem (_Code Smell_) erkennen
-2. Unittests für den Code schreiben (oder lesen und evtl. erweitern)
-3. Den Code anpassen (_Refactoring_ anwenden) und ihn dabei per Unittest überprüfen
-
-Die im [TODO: Link]() verlinkten Code Smells und Refactorings können beim
-Lösen der Aufgaben helfen. Vielleicht finden Sie aber selber Probleme und
-entsprechende Lösungen.
-
-Häufig auftretende und einfach zu erkennendes _Code Smells_ sind:
-
-- Duplizierter Code,
-- lange Methoden und grosse Klassen, die mehrere verschiedene Dinge tun bzw.
-  repräsentieren, und
-- ungeeignete Datenstrukturen, welche die Verarbeitung unnötig kompliziert
-  machen.
-
-## Übung: Tanzverbot-Diät (enthält Produktplatzierungen)
+# Tanzverbot-Diät (enthält Produktplatzierungen!)
 
 Die [Tanzverbot-Diät](https://www.youtube.com/watch?v=2LvdqYB0E74) zielt auf
 das schnelle Erreichen eines höheren Kampfgewichts ab und erfordert neben der
@@ -41,12 +19,12 @@ Vermeidung jeglicher körperlicher Aktivität folgende tägliche Kalorienaufnahm
 
 ![Von nichts kommt nichts!](pics/tanzverbot.png)
 
-### Berechnungen
+## Berechnungen
 
 Im vorliegenden Beispiel geht es um die folgenden Berechnungen:
 
 1. Berechnung der Gesamtzahl der täglich aufgenommenen Kalorien anhand
-   obenstehender Tabelle (Summe des Products aus _Kalorien pro Portion_ und
+   obenstehender Tabelle (Summe des Produkts aus _Kalorien pro Portion_ und
    _Anzahl Portionen_).
 1. Berechnung des täglichen Kalorienbedarfs (Grundumsatz) anhand von
    Körpergewicht, Körpergrösse und Alter gemäss der _Harris-Benedict_-Formel:
@@ -56,35 +34,21 @@ Im vorliegenden Beispiel geht es um die folgenden Berechnungen:
      (4.676 \* Alter in Jahren)
 1. Berechnung der überschüssigen Kalorien pro Tag (Differenz aus _aufgenommenen
    Kalorien_ und _Grundumsatz_) und der Anzahl Tage, die man sich an die
-   Tanzverbot-Diät halten muss, um auf ein gewünschtes Kampfgewicht zu kommen. - Für ein Kilo Fettzunahme sind 9000 überschüssig aufgenommene Kalorien
-   notwendig.
+   Tanzverbot-Diät halten muss, um auf ein gewünschtes Kampfgewicht zu kommen.
+   - Für ein Kilo Fettzunahme sind 9000 überschüssig aufgenommene Kalorien notwendig.
 
-### Anweisungen
+## Aufgabe
 
-Nehmen Sie ein selbständiges Refactoring der Klasse `TanzverbotDiet` in der
-Datei `src/tanzverbot-diet.ts` vor. Gehen Sie folgendermassen vor:
+Nehmen Sie ein selbständiges Refactoring des Codes in der Datei
+`src/tanzverbot-diet.ts` vor. Gehen Sie folgendermassen vor:
 
-1. Führen Sie das Berchnungsbeispiel interaktiv durch (siehe Anweisungen unten)
-   und halten Sie dabei die getätigten Eingaben und erhaltenen Ausgaben fest.
-   (Die Daten werden später in Unittests verwendet; aus Gründen der Privatsphäre
-   dürfen Sie natürlich fiktive Werte eingeben.)
-1. Lesen Sie den Code der Klasse `TanzverbotDiet` komplett durch und halten Sie
-   dabei Ausschau nach _Code Smells_, welche Sie sich zwischenzeitlich(!) als
-   `// TODO`-Kommentare direkt im Code notieren können.
+1. Lesen Sie den Code in der Datei `src/tanzverbot-diet.ts` komplett durch und halten Sie dabei Ausschau nach _Code Smells_, welche Sie sich zwischenzeitlich(!) als `// TODO`-Kommentare direkt im Code notieren können.
 1. Schreiben Sie in der Datei `src/tanzverbot-diet.test.ts` einen Testfall
-   mithilfe der Testdaten aus dem ersten Schritt. Führen Sie diesen Testfall aus
-   und erstellen Sie einen Commit, sobald dies erfolgreich ist.
-1. Arbeiten Sie nun die einzelnen _Code Smells_ gemäss Refactoring-Vorgehen ab.
-   Führen Sie den Testfall – bzw. alle Testfälle, denn evtl. wollen Sie im Zuge
-   des Refactorings weitere Testfälle schreiben – nach jeder Änderung aus!
-1. Machen Sie nach jeder erfolgreichen Anpassung einen Commit. Wenn Sie das
-   Gefühl haben, dass eine angefangene Änderung in eine Sackgasse führt, dann
-   machen Sie Ihre Änderungen mit `git checkout` wieder rückgängig.
+   mithilfe der Testdaten, die Sie selber erarbeiten. Führen Sie diesen Testfall aus und erstellen Sie einen Commit, sobald dies erfolgreich ist.
+1. Arbeiten Sie nun die einzelnen _Code Smells_ gemäss Refactoring-Vorgehen ab.  Führen Sie den Testfall – bzw. alle Testfälle, denn evtl. wollen Sie im Zuge des Refactorings weitere Testfälle schreiben – nach jeder Änderung aus!
+1. Machen Sie nach jeder erfolgreichen Anpassung einen Commit. Wenn Sie das Gefühl haben, dass eine angefangene Änderung in eine Sackgasse führt, dann machen Sie Ihre Änderungen mit `git checkout` wieder rückgängig.
 
-Erstellen Sie am Schluss einen Pull Request, falls Sie eine Rückmeldung zu Ihrem
-Code wünschen.
-
-#### Zusatzaufgabe 1: Grundumsatz auf Durchschnittsgewicht bezogen
+### Zusatzaufgabe 1: Grundumsatz auf Durchschnittsgewicht bezogen
 
 Für den täglichen Kalorienbedarf (Grundumsatz) wird vom Anfangsgewicht
 ausgegangen. Sinnvoller wäre die Annahme eines Durchschnittsgewichts bei
@@ -93,7 +57,7 @@ durchschnittliche tägliche Kalorienbedarf von Ausgangs- und Zielgewicht
 verwendet wird. (Dies ist kein Refactoring im strengen Sinn, da das von aussen
 wahrnehmbare Verhalten der Software dabei angepasst wird.)
 
-#### Zusatzaufgabe 2: Mehr Flexibilität für verbesserte Diät
+### Zusatzaufgabe 2: Mehr Flexibilität für verbesserte Diät
 
 Wie müsste der Code angepasst werden, damit auch die [verbesserte Version der
 Tanzverbot-Diät](https://www.youtube.com/watch?v=7xDmgGV3gS0) unterstützt werden
