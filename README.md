@@ -27,7 +27,7 @@ das schnelle Erreichen eines höheren Kampfgewichts ab und erfordert neben der
 Vermeidung jeglicher körperlicher Aktivität folgende tägliche Kalorienaufnahme:
 
 | Nahrungsmittel                  | Kalorien pro Portion | Anzahl Portionen |
-|---------------------------------|---------------------:|-----------------:|
+| ------------------------------- | -------------------: | ---------------: |
 | Kellogg's Tresor                |                  137 |                4 |
 | Weihenstephan Haltbare Milch    |                   64 |                8 |
 | Mühle Frikadellen               |                  271 |                4 |
@@ -50,15 +50,14 @@ Im vorliegenden Beispiel geht es um die folgenden Berechnungen:
    _Anzahl Portionen_).
 1. Berechnung des täglichen Kalorienbedarfs (Grundumsatz) anhand von
    Körpergewicht, Körpergrösse und Alter gemäss der _Harris-Benedict_-Formel:
-    - **Mann**: 66.47 + (13.7 * Körpergewicht in kg) + (5.003 * Körpergrösse in cm) -
-      (6.75 * Alter in Jahren)
-    - **Frau**: 655.1 + (9.563 * Körpergewicht in kg) + (1.85 * Körpergrose in cm) -
-      (4.676 * Alter in Jahren)
+   - **Mann**: 66.47 + (13.7 _ Körpergewicht in kg) + (5.003 _ Körpergrösse in cm) -
+     (6.75 \* Alter in Jahren)
+   - **Frau**: 655.1 + (9.563 _ Körpergewicht in kg) + (1.85 _ Körpergrose in cm) -
+     (4.676 \* Alter in Jahren)
 1. Berechnung der überschüssigen Kalorien pro Tag (Differenz aus _aufgenommenen
-Kalorien_ und _Grundumsatz_) und der Anzahl Tage, die man sich an die
-Tanzverbot-Diät halten muss, um auf ein gewünschtes Kampfgewicht zu kommen.
-    - Für ein Kilo Fettzunahme sind 9000 überschüssig aufgenommene Kalorien
-      notwendig.
+   Kalorien_ und _Grundumsatz_) und der Anzahl Tage, die man sich an die
+   Tanzverbot-Diät halten muss, um auf ein gewünschtes Kampfgewicht zu kommen. - Für ein Kilo Fettzunahme sind 9000 überschüssig aufgenommene Kalorien
+   notwendig.
 
 ### Anweisungen
 
@@ -84,10 +83,6 @@ Datei `src/tanzverbot-diet.ts` vor. Gehen Sie folgendermassen vor:
 
 Erstellen Sie am Schluss einen Pull Request, falls Sie eine Rückmeldung zu Ihrem
 Code wünschen.
-
-Die Aufgabe kann folgendermassen interaktiv getestet werden:
-
-   node run build && node run start
 
 #### Zusatzaufgabe 1: Grundumsatz auf Durchschnittsgewicht bezogen
 
