@@ -77,9 +77,7 @@ export function calcDateOnDiet(
     throw new Error("This diet is for gaining weight, not loosing it!");
   }
 
-  const bmr = calculateBMR(currentWeightKg, heightM, ageY, sex);
-  const dailyExcessCalories = calculateDailyCalories() - bmr;
-
+  const dailyExcessCalories = calculateDailyCalories() - calculateBMR(currentWeightKg, heightM, ageY, sex);
   if (dailyExcessCalories <= 0) {
     throw new Error("This diet is not sufficient for you to gain weight.");
   }
