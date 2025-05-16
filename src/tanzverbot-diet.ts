@@ -77,12 +77,8 @@ export function calcDateOnDiet(
     throw new Error("This diet is for gaining weight, not loosing it!");
   }
 
-  const dailyCaloriesOnDiet = foodData.reduce(
-    (acc, food) => acc + food.calories * food.servings,
-    0
-  );
   const bmr = calculateBMR(currentWeightKg, heightM, ageY, sex);
-  const dailyExcessCalories = dailyCaloriesOnDiet - bmr;
+  const dailyExcessCalories = calculateDailyCalories() - bmr;
 
   if (dailyExcessCalories <= 0) {
     throw new Error("This diet is not sufficient for you to gain weight.");
@@ -90,6 +86,13 @@ export function calcDateOnDiet(
 
   const CALORIES_PER_KG = 9000;
   return Math.ceil((CALORIES_PER_KG * weightGainKg) / dailyExcessCalories);
+}
+
+function calculateDailyCalories(){
+  return foodData.reduce(
+    (acc, food) => acc + food.calories * food.servings,
+    0
+  );
 }
 
 function calculateBMR(
