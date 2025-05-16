@@ -69,36 +69,39 @@ export function calcDateOnDiet(
   ageY: number,
   sex: Sex
 ): number {
+  if (ageY < 16 || heightM < 1.5) {
+    throw new Error("You do not qualify for this kind of diet.");
+  }
   const weightGainKg = targetWeightKg - currentWeightKg;
   if (weightGainKg < 0) {
-    throw new Error(`This diet is for gaining weight, not loosing it!`);
-  }
-  
-  if (ageY < 16 || heightM < 1.5) {
-    throw new Error(`You do not qualify for this kind of diet.`);
+    throw new Error("This diet is for gaining weight, not loosing it!");
   }
 
   const dailyCaloriesOnDiet = foodData.reduce(
     (acc, food) => acc + food.calories * food.servings,
     0
   );
-  let dailyCaloriesBasicMetabolicRate = 0;
-  if (sex == Sex.Male) {
-    dailyCaloriesBasicMetabolicRate = Math.ceil(
-      // Harris-Benedict-Formula (Male)
-      66.47 + 13.7 * currentWeightKg + 5.003 * heightM * 100.0 - 6.75 * ageY
-    );
-  } else {
-    dailyCaloriesBasicMetabolicRate = Math.ceil(
-      // Harris-Benedict-Formula (Female)
-      655.1 + 9.563 * currentWeightKg + 1.85 * heightM * 100.0 - 4.676 * ageY
-    );
-  }
-  //todo: Code nicht dublizieren
-  const dailyExcessCalories =
-    dailyCaloriesOnDiet - dailyCaloriesBasicMetabolicRate;
+  const bmr = calculateBMR(currentWeightKg, heightM, ageY, sex);
+  const dailyExcessCalories = dailyCaloriesOnDiet - bmr;
+
   if (dailyExcessCalories <= 0) {
     throw new Error("This diet is not sufficient for you to gain weight.");
   }
-  return Math.ceil((9000 * weightGainKg) / dailyExcessCalories);
+
+  const CALORIES_PER_KG = 9000;
+  return Math.ceil((CALORIES_PER_KG * weightGainKg) / dailyExcessCalories);
+}
+
+function calculateBMR(
+  weightKg: number,
+  heightM: number,
+  ageY: number,
+  sex: Sex
+): number {
+  const heightCm = heightM * 100;
+  if (sex === Sex.Male) {
+    return Math.ceil(66.47 + 13.7 * weightKg + 5.003 * heightCm - 6.75 * ageY);
+  } else {
+    return Math.ceil(655.1 + 9.563 * weightKg + 1.85 * heightCm - 4.676 * ageY);
+  }
 }
