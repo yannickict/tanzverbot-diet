@@ -16,14 +16,15 @@ const foodNames: string[] = [
   "Mini Babybel",
 ];
 const foodCalories: number[] = [137, 64, 271, 40, 297, 125, 482, 835, 37, 59];
-const foodServings: number[] = [4, 8, 4, 12, 1, 6, 2, 2, 25, 20];
+const foodServings: number[] = [4, 8, 4, 12, 1, 6, 2, 2, 25, 20]; 
+//todo: kann als Objekt gespeichert werden
 
 export function calcDateOnDiet(
   currentWeightKg: number,
   targetWeightKg: number,
   heightM: number,
   ageY: number,
-  sex: Sex,
+  sex: Sex
 ): number {
   const weightGainKg = targetWeightKg - currentWeightKg;
   if (weightGainKg < 0) {
@@ -38,18 +39,20 @@ export function calcDateOnDiet(
     const servings = foodServings[index] || 0;
     dailyCaloriesOnDiet += calories * servings;
   }
+  //todo: Erstelltes Objekt nachher nehmen
   let dailyCaloriesBasicMetabolicRate = 0;
   if (sex == Sex.Male) {
     dailyCaloriesBasicMetabolicRate = Math.ceil(
       // Harris-Benedict-Formula (Male)
-      66.47 + 13.7 * currentWeightKg + 5.003 * heightM * 100.0 - 6.75 * ageY,
+      66.47 + 13.7 * currentWeightKg + 5.003 * heightM * 100.0 - 6.75 * ageY
     );
   } else {
     dailyCaloriesBasicMetabolicRate = Math.ceil(
       // Harris-Benedict-Formula (Female)
-      655.1 + 9.563 * currentWeightKg + 1.85 * heightM * 100.0 - 4.676 * ageY,
+      655.1 + 9.563 * currentWeightKg + 1.85 * heightM * 100.0 - 4.676 * ageY
     );
   }
+  //todo: Code nicht dublizieren
   const dailyExcessCalories =
     dailyCaloriesOnDiet - dailyCaloriesBasicMetabolicRate;
   if (dailyExcessCalories <= 0) {
