@@ -73,16 +73,15 @@ export function calcDateOnDiet(
   if (weightGainKg < 0) {
     throw new Error(`This diet is for gaining weight, not loosing it!`);
   }
+  
   if (ageY < 16 || heightM < 1.5) {
     throw new Error(`You do not qualify for this kind of diet.`);
   }
-  let dailyCaloriesOnDiet = 0;
-  for (const index in foodData) {
-    const calories = foodData[index].calories || 0;
-    const servings = foodData[index].servings || 0;
-    dailyCaloriesOnDiet += calories * servings;
-  }
-  //todo: Erstelltes Objekt nachher nehmen
+
+  const dailyCaloriesOnDiet = foodData.reduce(
+    (acc, food) => acc + food.calories * food.servings,
+    0
+  );
   let dailyCaloriesBasicMetabolicRate = 0;
   if (sex == Sex.Male) {
     dailyCaloriesBasicMetabolicRate = Math.ceil(
